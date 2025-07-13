@@ -40,6 +40,29 @@ export default function Viewer() {
   const [processingStatus, setProcessingStatus] =
     useState<ProcessingStatus | null>(null);
 
+  useEffect(() => {
+    if (!jobId) return;
+
+    const pollStatus = async () => {
+      try {
+        const response = await fetch(`/api/status/${jobId}`);
+        if (response.ok) {
+          const status = await response.json();
+          setProcessingStatus(status);
+
+          // Continue polling if still processing
+          if (status.status === "processing") {
+            setTimeout(pollStatus, 1000);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch status:", error);
+      }
+    };
+
+    pollStatus();
+  }, [jobId]);
+
   const handleBack = () => {
     navigate("/");
   };
