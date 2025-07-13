@@ -1,6 +1,7 @@
 import { RequestHandler } from "express";
 import multer from "multer";
 import path from "path";
+import { videoProcessingService } from "../services/VideoProcessingService";
 
 // Configure multer for video uploads
 const storage = multer.diskStorage({
@@ -39,20 +40,20 @@ export const handleVideoUpload: RequestHandler = async (req, res) => {
       return res.status(400).json({ error: "No video file uploaded" });
     }
 
-    // Simulate video processing
-    const processingTime = Math.random() * 2000 + 1000; // 1-3 seconds
+    console.log(
+      `🎬 Starting Hollywood-level processing for: ${req.file.originalname}`,
+    );
 
-    setTimeout(() => {
-      // In a real application, this would trigger actual 3D conversion processing
-      console.log(`Processing video: ${req.file!.filename}`);
-    }, processingTime);
+    // Start real AI-powered 3D conversion
+    const jobId = await videoProcessingService.startProcessing(req.file.path);
 
     res.json({
-      message: "Video uploaded successfully",
+      message: "Video uploaded successfully - Starting AI conversion",
+      jobId,
       filename: req.file.filename,
       originalName: req.file.originalname,
       size: req.file.size,
-      processingTime: Math.ceil(processingTime / 1000),
+      status: "processing",
     });
   } catch (error) {
     console.error("Upload error:", error);
@@ -60,10 +61,30 @@ export const handleVideoUpload: RequestHandler = async (req, res) => {
   }
 };
 
+export const handleProcessingStatus: RequestHandler = (req, res) => {
+  const { jobId } = req.params;
+  const job = videoProcessingService.getJob(jobId);
+
+  if (!job) {
+    return res.status(404).json({ error: "Job not found" });
+  }
+
+  res.json({
+    jobId: job.id,
+    status: job.status,
+    progress: job.progress,
+    metadata: job.metadata,
+    startTime: job.startTime,
+    estimatedCompletion: job.estimatedCompletion,
+    error: job.error,
+  });
+};
+
 export interface VideoUploadResponse {
   message: string;
+  jobId: string;
   filename: string;
   originalName: string;
   size: number;
-  processingTime: number;
+  status: string;
 }
