@@ -91,7 +91,7 @@ export default function Viewer() {
       </header>
 
       {/* Main Content */}
-      <div className="pt-16 h-screen flex">
+      <div className="pt-16 h-screen flex flex-col lg:flex-row">
         {/* 3D Viewer */}
         <div className="flex-1 relative">
           <ThreeViewer className="w-full h-full" />
