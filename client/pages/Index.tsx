@@ -47,8 +47,8 @@ export default function Index() {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     setIsProcessing(false);
 
-    // Navigate to 3D viewer (placeholder for now)
-    alert("Video processed! 3D viewer coming soon...");
+    // Navigate to 3D viewer
+    navigate("/viewer");
   };
 
   return (
