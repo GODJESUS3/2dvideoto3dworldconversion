@@ -234,7 +234,7 @@ export default function Index() {
             </Card>
 
             <Card className="p-8 glass hover:glow transition-all duration-300">
-              <Cube className="h-12 w-12 text-primary mb-4" />
+              <Box className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-3">Interactive 3D</h3>
               <p className="text-muted-foreground">
                 Navigate through your converted videos in full 3D space with
