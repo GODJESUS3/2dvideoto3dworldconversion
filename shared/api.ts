@@ -10,3 +10,26 @@
 export interface DemoResponse {
   message: string;
 }
+
+/**
+ * Response type for video upload endpoint
+ */
+export interface VideoUploadResponse {
+  message: string;
+  filename: string;
+  originalName: string;
+  size: number;
+  processingTime: number;
+}
+
+/**
+ * Request type for video processing
+ */
+export interface VideoProcessRequest {
+  filename: string;
+  options?: {
+    quality?: "low" | "medium" | "high";
+    enableShadows?: boolean;
+    enableParticles?: boolean;
+  };
+}
