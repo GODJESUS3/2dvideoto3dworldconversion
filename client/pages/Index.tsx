@@ -61,7 +61,7 @@ export default function Index() {
               <Cube className="h-8 w-8 text-gradient" />
               <span className="text-xl font-bold text-gradient">Dimension</span>
             </div>
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-8">
               <a
                 href="#features"
                 className="text-foreground/80 hover:text-foreground"
