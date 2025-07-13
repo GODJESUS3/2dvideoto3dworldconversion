@@ -1,7 +1,11 @@
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
-import { handleVideoUpload, uploadMiddleware } from "./routes/upload";
+import {
+  handleVideoUpload,
+  uploadMiddleware,
+  handleProcessingStatus,
+} from "./routes/upload";
 
 export function createServer() {
   const app = express();
