@@ -16,12 +16,29 @@ import { Progress } from "@/components/ui/progress";
 import HollywoodViewer from "@/components/HollywoodViewer";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+interface ProcessingStatus {
+  jobId: string;
+  status: "processing" | "completed" | "failed";
+  progress: {
+    stage: "extracting" | "estimating" | "reconstructing" | "rendering";
+    progress: number;
+    currentFrame?: number;
+    totalFrames?: number;
+  };
+  error?: string;
+}
+
 export default function Viewer() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const jobId = searchParams.get("jobId");
+
   const [showControls, setShowControls] = useState(true);
   const [quality, setQuality] = useState([75]);
   const [enableShadows, setEnableShadows] = useState(true);
   const [enableParticles, setEnableParticles] = useState(true);
+  const [processingStatus, setProcessingStatus] =
+    useState<ProcessingStatus | null>(null);
 
   const handleBack = () => {
     navigate("/");
