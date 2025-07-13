@@ -92,7 +92,7 @@ export default function Index() {
       <section className="pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Transform Your
               <span className="text-gradient block">2D Videos</span>
               Into 3D Worlds
