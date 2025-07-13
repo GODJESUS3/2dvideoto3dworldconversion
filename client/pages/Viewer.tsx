@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ArrowLeft,
   Download,
   Share2,
   Settings,
   Fullscreen,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import ThreeViewer from "@/components/ThreeViewer";
-import { useNavigate } from "react-router-dom";
+import { Progress } from "@/components/ui/progress";
+import HollywoodViewer from "@/components/HollywoodViewer";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function Viewer() {
   const navigate = useNavigate();
