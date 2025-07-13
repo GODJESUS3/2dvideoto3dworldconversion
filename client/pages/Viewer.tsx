@@ -100,9 +100,14 @@ export default function Viewer() {
                 Back
               </Button>
               <div>
-                <h1 className="text-lg font-semibold">My 3D World</h1>
+                <h1 className="text-lg font-semibold flex items-center">
+                  <Zap className="h-5 w-5 text-primary mr-2" />
+                  Hollywood AI Conversion
+                </h1>
                 <p className="text-sm text-muted-foreground">
-                  Generated from video.mp4
+                  {processingStatus?.status === "processing"
+                    ? `Processing: ${processingStatus.progress.stage}`
+                    : "3D World Generated"}
                 </p>
               </div>
             </div>
