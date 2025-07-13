@@ -66,7 +66,7 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Cube className="h-8 w-8 text-gradient" />
+              <Box className="h-8 w-8 text-gradient" />
               <span className="text-xl font-bold text-gradient">Dimension</span>
             </div>
             <div className="hidden lg:flex items-center space-x-8">
