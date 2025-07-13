@@ -51,12 +51,35 @@ export default function Index() {
     if (!uploadedFile) return;
 
     setIsProcessing(true);
-    // Simulate processing time
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    setIsProcessing(false);
 
-    // Navigate to 3D viewer
-    navigate("/viewer");
+    try {
+      // Upload video for real AI processing
+      const formData = new FormData();
+      formData.append("video", uploadedFile);
+
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Upload failed");
+      }
+
+      const result = await response.json();
+      console.log("🎬 Starting Hollywood-level AI conversion...", result);
+
+      // Simulate processing time while AI works
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      // Navigate to 3D viewer with job ID
+      navigate(`/viewer?jobId=${result.jobId}`);
+    } catch (error) {
+      console.error("❌ Processing failed:", error);
+      alert("Processing failed. Please try again.");
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
