@@ -139,9 +139,42 @@ export default function Viewer() {
 
       {/* Main Content */}
       <div className="pt-16 h-screen flex flex-col lg:flex-row">
-        {/* 3D Viewer */}
+        {/* Hollywood-Level 3D Viewer */}
         <div className="flex-1 relative">
-          <ThreeViewer className="w-full h-full" />
+          <HollywoodViewer
+            jobId={jobId || undefined}
+            className="w-full h-full"
+          />
+
+          {/* Processing Progress Overlay */}
+          {processingStatus?.status === "processing" && (
+            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+              <Card className="p-8 glass max-w-md w-full mx-4">
+                <div className="text-center">
+                  <Zap className="h-12 w-12 text-primary mx-auto mb-4 animate-pulse" />
+                  <h3 className="text-xl font-semibold mb-2">AI Processing</h3>
+                  <p className="text-muted-foreground mb-4 capitalize">
+                    {processingStatus.progress.stage.replace(/([A-Z])/g, " $1")}
+                  </p>
+                  <Progress
+                    value={processingStatus.progress.progress}
+                    className="mb-4"
+                  />
+                  <div className="flex justify-between text-sm text-muted-foreground">
+                    <span>
+                      {Math.round(processingStatus.progress.progress)}%
+                    </span>
+                    {processingStatus.progress.currentFrame && (
+                      <span>
+                        Frame {processingStatus.progress.currentFrame} /{" "}
+                        {processingStatus.progress.totalFrames}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            </div>
+          )}
         </div>
 
         {/* Controls Panel */}
