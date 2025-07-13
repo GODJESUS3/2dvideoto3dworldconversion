@@ -16,10 +16,11 @@ export interface DemoResponse {
  */
 export interface VideoUploadResponse {
   message: string;
+  jobId: string;
   filename: string;
   originalName: string;
   size: number;
-  processingTime: number;
+  status: string;
 }
 
 /**
