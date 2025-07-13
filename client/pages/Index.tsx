@@ -211,7 +211,7 @@ export default function Index() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-8 glass hover:glow transition-all duration-300">
+            <Card className="p-8 glass hover:glow transition-all duration-300 hover:scale-105 hover:-translate-y-2">
               <Sparkles className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-3">
                 AI Depth Estimation
