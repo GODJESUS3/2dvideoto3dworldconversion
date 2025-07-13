@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { Upload, Play, Sparkles, Zap, Cube, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 export default function Index() {
   const [dragActive, setDragActive] = useState(false);
