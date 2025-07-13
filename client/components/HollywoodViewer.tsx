@@ -6,6 +6,8 @@ import {
   Environment,
   Float,
   Text3D,
+} from "@react-three/drei";
+import {
   EffectComposer,
   Bloom,
   DepthOfField,
@@ -13,7 +15,7 @@ import {
   Vignette,
   SMAA,
   ToneMapping,
-} from "@react-three/drei";
+} from "@react-three/postprocessing";
 import * as THREE from "three";
 
 interface ProcessingJob {

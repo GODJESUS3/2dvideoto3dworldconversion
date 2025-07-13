@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.15",
+    "@react-three/postprocessing": "^3.0.4",
     "@tensorflow/tfjs": "^4.22.0",
     "@tensorflow/tfjs-node": "^4.22.0",
     "@types/multer": "^2.0.0",
