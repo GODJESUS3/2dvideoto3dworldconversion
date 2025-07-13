@@ -34,3 +34,29 @@ export interface VideoProcessRequest {
     enableParticles?: boolean;
   };
 }
+
+/**
+ * Processing status response
+ */
+export interface ProcessingStatusResponse {
+  jobId: string;
+  status: "queued" | "processing" | "completed" | "failed";
+  progress: {
+    stage: "extracting" | "estimating" | "reconstructing" | "rendering";
+    progress: number;
+    currentFrame?: number;
+    totalFrames?: number;
+    eta?: number;
+  };
+  metadata?: {
+    duration: number;
+    fps: number;
+    width: number;
+    height: number;
+    format: string;
+    size: number;
+  };
+  startTime: string;
+  estimatedCompletion?: string;
+  error?: string;
+}
