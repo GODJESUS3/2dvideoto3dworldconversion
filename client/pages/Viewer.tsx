@@ -99,7 +99,7 @@ export default function Viewer() {
 
         {/* Controls Panel */}
         {showControls && (
-          <div className="w-80 p-6 glass border-l border-border overflow-y-auto">
+          <div className="w-full lg:w-80 p-4 lg:p-6 glass border-t lg:border-t-0 lg:border-l border-border overflow-y-auto max-h-96 lg:max-h-none">
             <h2 className="text-xl font-semibold mb-6">Scene Settings</h2>
 
             <div className="space-y-6">
