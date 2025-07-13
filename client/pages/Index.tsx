@@ -4,7 +4,7 @@ import {
   Play,
   Sparkles,
   Zap,
-  Cube,
+  Box,
   ArrowRight,
   Menu,
 } from "lucide-react";
