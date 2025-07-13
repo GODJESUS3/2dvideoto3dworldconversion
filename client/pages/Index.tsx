@@ -92,6 +92,11 @@ export default function Index() {
                 Sign In
               </Button>
             </div>
+            <div className="lg:hidden">
+              <Button variant="ghost" size="sm">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
