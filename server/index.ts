@@ -23,6 +23,7 @@ export function createServer() {
   app.get("/api/demo", handleDemo);
 
   app.post("/api/upload", uploadMiddleware, handleVideoUpload);
+  app.get("/api/status/:jobId", handleProcessingStatus);
 
   return app;
 }
