@@ -6,6 +6,7 @@ import {
   gaussianSplattingService,
   GaussianSplattingJob,
 } from "./GaussianSplattingService";
+import { fusionProcessingService, FusionJob } from "./FusionProcessingService";
 import {
   depthEstimationService,
   DepthFrame,
