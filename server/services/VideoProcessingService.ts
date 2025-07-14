@@ -3,15 +3,18 @@ import path from "path";
 import fs from "fs/promises";
 import sharp from "sharp";
 import {
-  gaussianSplattingService,
+  realGaussianSplattingService,
   GaussianSplattingJob,
-} from "./GaussianSplattingService";
-import { fusionProcessingService, FusionJob } from "./FusionProcessingService";
+} from "./RealGaussianSplattingService";
 import {
-  depthEstimationService,
+  realFusionProcessingService,
+  RealFusionJob,
+} from "./RealFusionProcessingService";
+import {
+  realDepthEstimationService,
   DepthFrame,
   ProcessingProgress,
-} from "./DepthEstimationService";
+} from "./RealDepthEstimationService";
 
 export interface VideoMetadata {
   duration: number;
@@ -31,7 +34,7 @@ export interface ProcessingJob {
   mode: "standard" | "hollywood" | "fusion"; // NEW: Added FUSION mode!
   depthFrames?: DepthFrame[];
   gaussianSplattingJob?: GaussianSplattingJob;
-  fusionJob?: FusionJob; // NEW: Revolutionary fusion processing
+  fusionJob?: RealFusionJob; // REAL: Revolutionary fusion processing
   pointCloudPath?: string;
   meshPath?: string;
   outputPath?: string;
@@ -130,53 +133,58 @@ export class VideoProcessingService {
 
       // Choose processing pipeline based on mode
       if (job.mode === "fusion") {
-        // 🚀 FUSION MODE: Revolutionary AI + Gaussian Splatting Combination
-        console.log("🚀 Starting REVOLUTIONARY FUSION PROCESSING...");
+        // 🚀 REAL FUSION MODE: Revolutionary AI + Gaussian Splatting Combination
+        console.log("🚀 Starting REAL REVOLUTIONARY FUSION PROCESSING...");
 
-        const fusionJobId = await fusionProcessingService.startFusionProcessing(
-          job.videoPath,
-          {
-            quality: options.quality || "insane",
-            maxFrames: options.maxFrames || 192,
-            fusionMode: options.fusionMode || "ultimate",
-          },
-          onProgress,
-        );
+        const fusionJobId =
+          await realFusionProcessingService.startRealFusionProcessing(
+            job.videoPath,
+            {
+              quality: options.quality || "insane",
+              maxFrames: options.maxFrames || 100,
+              fusionMode: options.fusionMode || "ultimate",
+              depthModel: "midas",
+              enableOptimization: true,
+            },
+            onProgress,
+          );
 
-        // Monitor fusion processing
-        await this.monitorFusionProcessing(fusionJobId, onProgress);
+        // Monitor real fusion processing
+        await this.monitorRealFusionProcessing(fusionJobId, onProgress);
 
-        const fusionJob = fusionProcessingService.getJob(fusionJobId);
+        const fusionJob = realFusionProcessingService.getJob(fusionJobId);
         if (fusionJob?.status === "completed") {
           job.outputPath = fusionJob.finalPath;
           job.previewPath = fusionJob.previewPath;
           job.fusionJob = fusionJob;
           console.log(
-            "🏆 REVOLUTIONARY FUSION completed - INSANE quality achieved!",
+            "🏆 REAL REVOLUTIONARY FUSION completed - INSANE quality achieved!",
           );
         } else {
-          throw new Error("Fusion processing failed");
+          throw new Error("Real fusion processing failed");
         }
       } else if (job.mode === "hollywood") {
         // 🎬 HOLLYWOOD MODE: Real Gaussian Splatting Pipeline
         console.log("🎬 Starting HOLLYWOOD-LEVEL Gaussian Splatting...");
 
-        const gsJobId = await gaussianSplattingService.startGaussianSplatting(
-          job.videoPath,
-          {
-            maxFrames: options.maxFrames || 192,
-            iterations: this.getIterationsForQuality(options.quality || "high"),
-            quality: options.quality || "high",
-          },
-          onProgress,
-        );
+        const gsJobId =
+          await realGaussianSplattingService.startGaussianSplatting(
+            job.videoPath,
+            {
+              maxFrames: options.maxFrames || 100,
+              iterations: this.getIterationsForQuality(
+                options.quality || "high",
+              ),
+              quality: options.quality || "high",
+            },
+          );
 
-        job.gaussianSplattingJob = gaussianSplattingService.getJob(gsJobId);
+        job.gaussianSplattingJob = realGaussianSplattingService.getJob(gsJobId);
 
-        // Monitor Gaussian Splatting progress
-        await this.monitorGaussianSplatting(gsJobId, onProgress);
+        // Monitor real Gaussian Splatting progress
+        await this.monitorRealGaussianSplatting(gsJobId, onProgress);
 
-        const gsJob = gaussianSplattingService.getJob(gsJobId);
+        const gsJob = realGaussianSplattingService.getJob(gsJobId);
         if (gsJob?.status === "completed") {
           job.outputPath = gsJob.outputPath;
           console.log("🏆 Hollywood-level Gaussian Splatting completed!");
@@ -188,9 +196,14 @@ export class VideoProcessingService {
         console.log("🤖 Starting Standard AI depth estimation...");
 
         onProgress({ stage: "estimating", progress: 0 });
-        job.depthFrames = await depthEstimationService.processVideoFrames(
+        job.depthFrames = await realDepthEstimationService.processVideoFrames(
           job.videoPath,
           onProgress,
+          {
+            model: "midas",
+            quality: options.quality || "high",
+            maxFrames: options.maxFrames || 50,
+          },
         );
 
         onProgress({ stage: "reconstructing", progress: 0 });
@@ -225,20 +238,20 @@ export class VideoProcessingService {
     }
   }
 
-  private async monitorGaussianSplatting(
+  private async monitorRealGaussianSplatting(
     gsJobId: string,
     onProgress: (progress: ProcessingProgress) => void,
   ): Promise<void> {
     return new Promise((resolve, reject) => {
       const checkInterval = setInterval(() => {
-        const gsJob = gaussianSplattingService.getJob(gsJobId);
+        const gsJob = realGaussianSplattingService.getJob(gsJobId);
         if (!gsJob) {
           clearInterval(checkInterval);
-          reject(new Error("Gaussian Splatting job not found"));
+          reject(new Error("Real Gaussian Splatting job not found"));
           return;
         }
 
-        // Forward progress from Gaussian Splatting
+        // Forward progress from real Gaussian Splatting
         onProgress(gsJob.progress);
 
         if (gsJob.status === "completed") {
@@ -246,37 +259,37 @@ export class VideoProcessingService {
           resolve();
         } else if (gsJob.status === "failed") {
           clearInterval(checkInterval);
-          reject(new Error(gsJob.error || "Gaussian Splatting failed"));
+          reject(new Error(gsJob.error || "Real Gaussian Splatting failed"));
         }
-      }, 1000);
+      }, 2000); // Check every 2 seconds for real processing
     });
   }
 
-  private async monitorFusionProcessing(
+  private async monitorRealFusionProcessing(
     fusionJobId: string,
     onProgress: (progress: ProcessingProgress) => void,
   ): Promise<void> {
     return new Promise((resolve, reject) => {
       const checkInterval = setInterval(() => {
-        const fusionJob = fusionProcessingService.getJob(fusionJobId);
+        const fusionJob = realFusionProcessingService.getJob(fusionJobId);
         if (!fusionJob) {
           clearInterval(checkInterval);
-          reject(new Error("Fusion processing job not found"));
+          reject(new Error("Real fusion processing job not found"));
           return;
         }
 
-        // Forward progress from Fusion processing
+        // Forward progress from real Fusion processing
         onProgress(fusionJob.progress);
 
         if (fusionJob.status === "completed") {
           clearInterval(checkInterval);
-          console.log("🚀 FUSION monitoring complete!");
+          console.log("🚀 REAL FUSION monitoring complete!");
           resolve();
         } else if (fusionJob.status === "failed") {
           clearInterval(checkInterval);
-          reject(new Error(fusionJob.error || "Fusion processing failed"));
+          reject(new Error(fusionJob.error || "Real fusion processing failed"));
         }
-      }, 1000);
+      }, 2000); // Check every 2 seconds for real processing
     });
   }
 
@@ -492,7 +505,8 @@ end_header
 
   async cleanup() {
     // Clean up temp files and resources
-    await depthEstimationService.cleanup();
+    await realDepthEstimationService.cleanup();
+    await realFusionProcessingService.cleanup();
     this.jobs.clear();
     this.progressCallbacks.clear();
   }
