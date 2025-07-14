@@ -295,16 +295,19 @@ export default function Index() {
               </RadioGroup>
 
               {/* Quality Selection */}
-              {processingMode === "hollywood" && (
+              {(processingMode === "hollywood" ||
+                processingMode === "fusion") && (
                 <div className="mt-6 pt-6 border-t border-border">
                   <Label className="text-sm font-medium mb-3 block">
-                    Quality Settings
+                    {processingMode === "fusion"
+                      ? "Fusion Quality Settings"
+                      : "Quality Settings"}
                   </Label>
                   <Select
                     value={quality}
-                    onValueChange={(value: "low" | "medium" | "high") =>
-                      setQuality(value)
-                    }
+                    onValueChange={(
+                      value: "low" | "medium" | "high" | "insane",
+                    ) => setQuality(value)}
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select quality" />
