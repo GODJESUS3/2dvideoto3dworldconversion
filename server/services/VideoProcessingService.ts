@@ -69,6 +69,11 @@ export class VideoProcessingService {
 
   async startProcessing(
     videoPath: string,
+    options: {
+      mode?: "standard" | "hollywood";
+      quality?: "low" | "medium" | "high";
+      maxFrames?: number;
+    } = {},
     onProgress?: (progress: ProcessingProgress) => void,
   ): Promise<string> {
     const jobId = `job_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -78,6 +83,7 @@ export class VideoProcessingService {
       videoPath,
       status: "queued",
       progress: { stage: "extracting", progress: 0 },
+      mode: options.mode || "hollywood", // Default to Hollywood mode!
       startTime: new Date(),
     };
 
@@ -88,7 +94,7 @@ export class VideoProcessingService {
     }
 
     // Start processing in background
-    this.processVideoAsync(jobId);
+    this.processVideoAsync(jobId, options);
 
     return jobId;
   }
