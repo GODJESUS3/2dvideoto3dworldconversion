@@ -175,140 +175,28 @@ export default function Index() {
             </p>
           </div>
 
-          {/* Processing Mode Selection */}
-          <div className="max-w-4xl mx-auto mb-8">
-            <Card className="p-6 glass border border-primary/20">
-              <h3 className="text-xl font-semibold mb-4 text-center">
-                Choose Your Processing Mode
-              </h3>
-
-              <RadioGroup
-                value={processingMode}
-                onValueChange={(value: "hollywood" | "standard" | "fusion") =>
-                  setProcessingMode(value)
-                }
-                className="grid md:grid-cols-3 gap-4"
-              >
-                {/* Hollywood Mode */}
-                <div className="relative">
-                  <RadioGroupItem
-                    value="hollywood"
-                    id="hollywood"
-                    className="peer sr-only"
-                  />
-                  <Label
-                    htmlFor="hollywood"
-                    className="flex flex-col p-6 bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-lg border-2 border-purple-500/30 cursor-pointer hover:border-purple-400/50 peer-checked:border-purple-400 peer-checked:bg-gradient-to-br peer-checked:from-purple-900/40 peer-checked:to-pink-900/40 transition-all duration-300"
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-2">
-                        <Award className="h-6 w-6 text-purple-400" />
-                        <span className="text-lg font-semibold">
-                          Hollywood Mode
-                        </span>
-                      </div>
-                      <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                        Premium
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Real Gaussian Splatting with COLMAP calibration.
-                      Professional-grade 3D reconstruction used in Hollywood
-                      films.
-                    </p>
-                    <div className="text-xs text-purple-300 space-y-1">
-                      <div>• Real GPU-accelerated processing</div>
-                      <div>• 25,000 iteration training</div>
-                      <div>• Cinema-quality results</div>
-                      <div>• Processing time: 5-15 minutes</div>
-                    </div>
-                  </Label>
+          {/* FUSION Quality Settings */}
+          <div className="max-w-3xl mx-auto mb-8">
+            <Card className="p-8 glass border border-violet-500/30 glow">
+              <div className="text-center mb-6">
+                <div className="flex items-center justify-center space-x-3 mb-4">
+                  <Sparkles className="h-8 w-8 text-violet-400" />
+                  <h3 className="text-2xl font-bold">🚀 FUSION Processing</h3>
+                  <Badge className="bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white animate-pulse">
+                    REVOLUTIONARY
+                  </Badge>
                 </div>
+                <p className="text-muted-foreground">
+                  Revolutionary AI + Gaussian Splatting combination for INSANE
+                  quality 3D reconstruction
+                </p>
+              </div>
 
-                {/* Standard Mode */}
-                <div className="relative">
-                  <RadioGroupItem
-                    value="standard"
-                    id="standard"
-                    className="peer sr-only"
-                  />
-                  <Label
-                    htmlFor="standard"
-                    className="flex flex-col p-6 bg-gradient-to-br from-blue-900/20 to-cyan-900/20 rounded-lg border-2 border-blue-500/30 cursor-pointer hover:border-blue-400/50 peer-checked:border-blue-400 peer-checked:bg-gradient-to-br peer-checked:from-blue-900/40 peer-checked:to-cyan-900/40 transition-all duration-300"
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-2">
-                        <Star className="h-6 w-6 text-blue-400" />
-                        <span className="text-lg font-semibold">
-                          Standard Mode
-                        </span>
-                      </div>
-                      <Badge
-                        variant="outline"
-                        className="border-blue-400 text-blue-400"
-                      >
-                        Fast
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      AI-powered depth estimation with advanced algorithms.
-                      High-quality 3D reconstruction for quick results.
-                    </p>
-                    <div className="text-xs text-blue-300 space-y-1">
-                      <div>• Advanced depth estimation</div>
-                      <div>• Smart point cloud generation</div>
-                      <div>• High-quality results</div>
-                      <div>• Processing time: 1-3 minutes</div>
-                    </div>
-                  </Label>
-                </div>
-
-                {/* FUSION Mode - Revolutionary! */}
-                <div className="relative">
-                  <RadioGroupItem
-                    value="fusion"
-                    id="fusion"
-                    className="peer sr-only"
-                  />
-                  <Label
-                    htmlFor="fusion"
-                    className="flex flex-col p-6 bg-gradient-to-br from-violet-900/30 to-fuchsia-900/30 rounded-lg border-2 border-violet-500/50 cursor-pointer hover:border-violet-400/70 peer-checked:border-violet-400 peer-checked:bg-gradient-to-br peer-checked:from-violet-900/50 peer-checked:to-fuchsia-900/50 transition-all duration-300 glow"
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-2">
-                        <Sparkles className="h-6 w-6 text-violet-400" />
-                        <span className="text-lg font-semibold">
-                          FUSION Mode
-                        </span>
-                      </div>
-                      <Badge className="bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white animate-pulse">
-                        REVOLUTIONARY
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      🚀 AI + Gaussian Splatting FUSION! Combines lightning-fast
-                      AI with Hollywood-grade reconstruction for INSANE quality
-                      results.
-                    </p>
-                    <div className="text-xs text-violet-300 space-y-1">
-                      <div>• AI-guided Gaussian Splatting</div>
-                      <div>• Multi-stage enhancement pipeline</div>
-                      <div>• Real-time preview + final fusion</div>
-                      <div>• Processing time: 8-25 minutes</div>
-                      <div>• Quality level: INSANE 🔥</div>
-                    </div>
-                  </Label>
-                </div>
-              </RadioGroup>
-
-              {/* Quality Selection */}
-              {(processingMode === "hollywood" ||
-                processingMode === "fusion") && (
-                <div className="mt-6 pt-6 border-t border-border">
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Quality Settings */}
+                <div>
                   <Label className="text-sm font-medium mb-3 block">
-                    {processingMode === "fusion"
-                      ? "Fusion Quality Settings"
-                      : "Quality Settings"}
+                    Quality Level
                   </Label>
                   <Select
                     value={quality}
@@ -321,60 +209,62 @@ export default function Index() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="low">
-                        {processingMode === "fusion"
-                          ? "Fast Fusion (8,000 iterations - 5 min)"
-                          : "Low Quality (5,000 iterations - 2 min)"}
+                        ⚡ Fast Fusion (8,000 iterations - 5 min)
                       </SelectItem>
                       <SelectItem value="medium">
-                        {processingMode === "fusion"
-                          ? "Balanced Fusion (20,000 iterations - 12 min)"
-                          : "Medium Quality (15,000 iterations - 8 min)"}
+                        ⚖️ Balanced Fusion (20,000 iterations - 12 min)
                       </SelectItem>
                       <SelectItem value="high">
-                        {processingMode === "fusion"
-                          ? "Ultimate Fusion (35,000 iterations - 20 min)"
-                          : "High Quality (25,000 iterations - 15 min)"}
+                        🚀 Ultimate Fusion (35,000 iterations - 20 min)
                       </SelectItem>
-                      {processingMode === "fusion" && (
-                        <SelectItem value="insane">
-                          🔥 INSANE Fusion (50,000 iterations - 30 min) - Cinema
-                          Grade!
-                        </SelectItem>
-                      )}
+                      <SelectItem value="insane">
+                        🔥 INSANE Fusion (50,000 iterations - 30 min) - Cinema
+                        Grade!
+                      </SelectItem>
                     </SelectContent>
                   </Select>
-
-                  {/* Fusion Mode Settings */}
-                  {processingMode === "fusion" && (
-                    <div className="mt-4">
-                      <Label className="text-sm font-medium mb-3 block">
-                        Fusion Enhancement
-                      </Label>
-                      <Select
-                        value={fusionMode}
-                        onValueChange={(
-                          value: "fast" | "balanced" | "ultimate",
-                        ) => setFusionMode(value)}
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select fusion mode" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="fast">
-                            ⚡ Fast Fusion - Quick results
-                          </SelectItem>
-                          <SelectItem value="balanced">
-                            ⚖️ Balanced Fusion - Optimal quality/speed
-                          </SelectItem>
-                          <SelectItem value="ultimate">
-                            🚀 Ultimate Fusion - Maximum enhancement
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  )}
                 </div>
-              )}
+
+                {/* Enhancement Mode */}
+                <div>
+                  <Label className="text-sm font-medium mb-3 block">
+                    Enhancement Mode
+                  </Label>
+                  <Select
+                    value={fusionMode}
+                    onValueChange={(value: "fast" | "balanced" | "ultimate") =>
+                      setFusionMode(value)
+                    }
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select enhancement" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="fast">⚡ Fast Enhancement</SelectItem>
+                      <SelectItem value="balanced">
+                        ⚖️ Balanced Enhancement
+                      </SelectItem>
+                      <SelectItem value="ultimate">
+                        🚀 Ultimate Enhancement
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              {/* FUSION Pipeline Preview */}
+              <div className="mt-6 p-4 bg-gradient-to-r from-violet-900/20 to-fuchsia-900/20 rounded-lg border border-violet-500/20">
+                <h4 className="text-sm font-medium mb-3 text-violet-300">
+                  FUSION Pipeline:
+                </h4>
+                <div className="grid grid-cols-5 gap-2 text-xs text-violet-200">
+                  <div className="text-center">⚡ AI Preprocessing</div>
+                  <div className="text-center">🧠 Depth Analysis</div>
+                  <div className="text-center">🔮 Enhancement</div>
+                  <div className="text-center">🎬 Gaussian Training</div>
+                  <div className="text-center">✨ Fusion Output</div>
+                </div>
+              </div>
             </Card>
           </div>
 
