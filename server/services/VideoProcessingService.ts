@@ -179,7 +179,7 @@ export class VideoProcessingService {
         const gsJob = gaussianSplattingService.getJob(gsJobId);
         if (gsJob?.status === "completed") {
           job.outputPath = gsJob.outputPath;
-          console.log("���� Hollywood-level Gaussian Splatting completed!");
+          console.log("🏆 Hollywood-level Gaussian Splatting completed!");
         } else {
           throw new Error("Gaussian Splatting failed");
         }
@@ -247,6 +247,34 @@ export class VideoProcessingService {
         } else if (gsJob.status === "failed") {
           clearInterval(checkInterval);
           reject(new Error(gsJob.error || "Gaussian Splatting failed"));
+        }
+      }, 1000);
+    });
+  }
+
+  private async monitorFusionProcessing(
+    fusionJobId: string,
+    onProgress: (progress: ProcessingProgress) => void,
+  ): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const checkInterval = setInterval(() => {
+        const fusionJob = fusionProcessingService.getJob(fusionJobId);
+        if (!fusionJob) {
+          clearInterval(checkInterval);
+          reject(new Error("Fusion processing job not found"));
+          return;
+        }
+
+        // Forward progress from Fusion processing
+        onProgress(fusionJob.progress);
+
+        if (fusionJob.status === "completed") {
+          clearInterval(checkInterval);
+          console.log("🚀 FUSION monitoring complete!");
+          resolve();
+        } else if (fusionJob.status === "failed") {
+          clearInterval(checkInterval);
+          reject(new Error(fusionJob.error || "Fusion processing failed"));
         }
       }, 1000);
     });
