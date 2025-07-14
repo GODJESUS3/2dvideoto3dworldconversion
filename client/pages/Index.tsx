@@ -411,12 +411,12 @@ export default function Index() {
               </p>
             </Card>
 
-            <Card className="p-8 glass hover:glow transition-all duration-300">
-              <Box className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Interactive 3D</h3>
+            <Card className="p-8 glass hover:glow transition-all duration-300 hover:scale-105 hover:-translate-y-2">
+              <Zap className="h-12 w-12 text-green-400 mb-4" />
+              <h3 className="text-xl font-semibold mb-3">GPU Acceleration</h3>
               <p className="text-muted-foreground">
-                Navigate through your converted videos in full 3D space with
-                mouse and keyboard controls
+                25,000 iteration neural training with CUDA acceleration for
+                photorealistic results in minutes, not hours
               </p>
             </Card>
           </div>
