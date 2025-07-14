@@ -177,15 +177,17 @@ export default function Index() {
             <Card className="p-8 glass border border-violet-500/30 glow">
               <div className="text-center mb-6">
                 <div className="flex items-center justify-center space-x-3 mb-4">
-                  <Sparkles className="h-8 w-8 text-violet-400" />
-                  <h3 className="text-2xl font-bold">🚀 FUSION Processing</h3>
-                  <Badge className="bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white animate-pulse">
-                    REVOLUTIONARY
+                  <span className="text-4xl">🔥</span>
+                  <h3 className="text-3xl font-bold text-red-400">
+                    INSANE FUSION
+                  </h3>
+                  <Badge className="bg-gradient-to-r from-red-500 to-orange-500 text-white animate-pulse text-lg px-4 py-2">
+                    CINEMA GRADE
                   </Badge>
                 </div>
-                <p className="text-muted-foreground">
-                  Revolutionary AI + Gaussian Splatting combination for INSANE
-                  quality 3D reconstruction
+                <p className="text-lg text-muted-foreground">
+                  Maximum quality 50,000 iteration processing with ultimate
+                  enhancement - Hollywood standard
                 </p>
               </div>
 
@@ -193,7 +195,7 @@ export default function Index() {
                 {/* Fixed INSANE Quality */}
                 <div className="text-center p-6 bg-gradient-to-br from-red-900/40 to-orange-900/40 rounded-lg border-2 border-red-400/50 glow">
                   <div className="flex items-center justify-center space-x-2 mb-3">
-                    <span className="text-3xl">🔥</span>
+                    <span className="text-3xl">����</span>
                     <h4 className="text-xl font-bold text-red-300">
                       INSANE Quality
                     </h4>
