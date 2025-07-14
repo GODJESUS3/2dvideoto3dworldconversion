@@ -402,14 +402,12 @@ export default function Index() {
               </p>
             </Card>
 
-            <Card className="p-8 glass hover:glow transition-all duration-300">
-              <Zap className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-3">
-                Real-time Processing
-              </h3>
+            <Card className="p-8 glass hover:glow transition-all duration-300 hover:scale-105 hover:-translate-y-2">
+              <Sparkles className="h-12 w-12 text-blue-400 mb-4" />
+              <h3 className="text-xl font-semibold mb-3">COLMAP Calibration</h3>
               <p className="text-muted-foreground">
-                Lightning-fast conversion powered by GPU acceleration and
-                optimized algorithms
+                Professional camera calibration and structure-from-motion
+                algorithms for pixel-perfect 3D accuracy
               </p>
             </Card>
 
