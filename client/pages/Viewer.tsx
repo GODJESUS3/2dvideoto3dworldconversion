@@ -102,13 +102,22 @@ export default function Viewer() {
               </Button>
               <div>
                 <h1 className="text-lg font-semibold flex items-center">
-                  <Zap className="h-5 w-5 text-primary mr-2" />
-                  Hollywood AI Conversion
+                  {mode === "hollywood" ? (
+                    <>
+                      <Award className="h-5 w-5 text-purple-400 mr-2" />
+                      Hollywood Gaussian Splatting
+                    </>
+                  ) : (
+                    <>
+                      <Zap className="h-5 w-5 text-blue-400 mr-2" />
+                      Standard AI Conversion
+                    </>
+                  )}
                 </h1>
                 <p className="text-sm text-muted-foreground">
                   {processingStatus?.status === "processing"
-                    ? `Processing: ${processingStatus.progress.stage}`
-                    : "3D World Generated"}
+                    ? `${mode === "hollywood" ? "Gaussian Splatting" : "AI Processing"}: ${processingStatus.progress.stage}`
+                    : `${mode === "hollywood" ? "Cinema-Quality" : "High-Quality"} 3D World Generated`}
                 </p>
               </div>
             </div>
