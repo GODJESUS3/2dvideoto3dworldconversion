@@ -344,16 +344,28 @@ export default function Index() {
                     <Button
                       onClick={processVideo}
                       disabled={isProcessing}
-                      className="gradient-primary glow"
+                      className={`glow ${processingMode === "hollywood" ? "gradient-primary" : "bg-blue-600 hover:bg-blue-700"}`}
                     >
                       {isProcessing ? (
                         <>
                           <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
-                          Processing...
+                          {processingMode === "hollywood"
+                            ? "Hollywood Processing..."
+                            : "Standard Processing..."}
                         </>
                       ) : (
                         <>
-                          Generate 3D World
+                          {processingMode === "hollywood" ? (
+                            <>
+                              <Award className="mr-2 h-4 w-4" />
+                              Hollywood Conversion
+                            </>
+                          ) : (
+                            <>
+                              <Star className="mr-2 h-4 w-4" />
+                              Standard Conversion
+                            </>
+                          )}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </>
                       )}
