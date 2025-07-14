@@ -6,6 +6,7 @@ import {
   Settings,
   Fullscreen,
   Zap,
+  Award,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
