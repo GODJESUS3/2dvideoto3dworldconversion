@@ -3,6 +3,10 @@ import path from "path";
 import fs from "fs/promises";
 import sharp from "sharp";
 import {
+  gaussianSplattingService,
+  GaussianSplattingJob,
+} from "./GaussianSplattingService";
+import {
   depthEstimationService,
   DepthFrame,
   ProcessingProgress,
