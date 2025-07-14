@@ -40,19 +40,32 @@ export const handleVideoUpload: RequestHandler = async (req, res) => {
       return res.status(400).json({ error: "No video file uploaded" });
     }
 
-    console.log(
-      `🎬 Starting Hollywood-level processing for: ${req.file.originalname}`,
-    );
+    // Get processing options from request body or use defaults
+    const mode = req.body.mode || "hollywood"; // Default to Hollywood!
+    const quality = req.body.quality || "high";
+    const maxFrames = parseInt(req.body.maxFrames) || 192;
 
-    // Start real AI-powered 3D conversion
-    const jobId = await videoProcessingService.startProcessing(req.file.path);
+    console.log(
+      `🎬 Starting ${mode.toUpperCase()}-level processing for: ${req.file.originalname}`,
+    );
+    console.log(`⚙️ Settings: Quality=${quality}, Frames=${maxFrames}`);
+
+    // Start real Gaussian Splatting or standard processing
+    const jobId = await videoProcessingService.startProcessing(req.file.path, {
+      mode,
+      quality,
+      maxFrames,
+    });
 
     res.json({
-      message: "Video uploaded successfully - Starting AI conversion",
+      message: `Video uploaded successfully - Starting ${mode.toUpperCase()} conversion`,
       jobId,
       filename: req.file.filename,
       originalName: req.file.originalname,
       size: req.file.size,
+      mode,
+      quality,
+      maxFrames,
       status: "processing",
     });
   } catch (error) {
