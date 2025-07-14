@@ -100,7 +100,12 @@ export default function Index() {
       );
 
       // Simulate processing time while real AI works
-      const estimatedTime = processingMode === "hollywood" ? 6000 : 3000;
+      const estimatedTime =
+        processingMode === "fusion"
+          ? 8000
+          : processingMode === "hollywood"
+            ? 6000
+            : 3000;
       await new Promise((resolve) => setTimeout(resolve, estimatedTime));
 
       // Navigate to 3D viewer with job ID
