@@ -255,6 +255,43 @@ export default function Index() {
                     </div>
                   </Label>
                 </div>
+
+                {/* FUSION Mode - Revolutionary! */}
+                <div className="relative">
+                  <RadioGroupItem
+                    value="fusion"
+                    id="fusion"
+                    className="peer sr-only"
+                  />
+                  <Label
+                    htmlFor="fusion"
+                    className="flex flex-col p-6 bg-gradient-to-br from-violet-900/30 to-fuchsia-900/30 rounded-lg border-2 border-violet-500/50 cursor-pointer hover:border-violet-400/70 peer-checked:border-violet-400 peer-checked:bg-gradient-to-br peer-checked:from-violet-900/50 peer-checked:to-fuchsia-900/50 transition-all duration-300 glow"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-2">
+                        <Sparkles className="h-6 w-6 text-violet-400" />
+                        <span className="text-lg font-semibold">
+                          FUSION Mode
+                        </span>
+                      </div>
+                      <Badge className="bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white animate-pulse">
+                        REVOLUTIONARY
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      🚀 AI + Gaussian Splatting FUSION! Combines lightning-fast
+                      AI with Hollywood-grade reconstruction for INSANE quality
+                      results.
+                    </p>
+                    <div className="text-xs text-violet-300 space-y-1">
+                      <div>• AI-guided Gaussian Splatting</div>
+                      <div>• Multi-stage enhancement pipeline</div>
+                      <div>• Real-time preview + final fusion</div>
+                      <div>• Processing time: 8-25 minutes</div>
+                      <div>• Quality level: INSANE 🔥</div>
+                    </div>
+                  </Label>
+                </div>
               </RadioGroup>
 
               {/* Quality Selection */}
