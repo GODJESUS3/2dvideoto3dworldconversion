@@ -382,10 +382,13 @@ export default function Index() {
       <section id="features" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Powered by Advanced AI</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Our cutting-edge technology transforms flat videos into immersive
-              3D experiences
+            <h2 className="text-4xl font-bold mb-4">
+              World-Class 3D Technology
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Choose between lightning-fast AI processing or cinema-grade
+              Gaussian Splatting used in Hollywood productions for
+              photorealistic 3D reconstruction
             </p>
           </div>
 
