@@ -217,6 +217,7 @@ export default function Index() {
                     onValueChange={(value: "fast" | "balanced" | "ultimate") =>
                       setFusionMode(value)
                     }
+                    disabled
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select enhancement" />
