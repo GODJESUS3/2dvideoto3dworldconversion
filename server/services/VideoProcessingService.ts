@@ -129,7 +129,35 @@ export class VideoProcessingService {
       job.metadata = await this.analyzeVideo(job.videoPath);
 
       // Choose processing pipeline based on mode
-      if (job.mode === "hollywood") {
+      if (job.mode === "fusion") {
+        // 🚀 FUSION MODE: Revolutionary AI + Gaussian Splatting Combination
+        console.log("🚀 Starting REVOLUTIONARY FUSION PROCESSING...");
+
+        const fusionJobId = await fusionProcessingService.startFusionProcessing(
+          job.videoPath,
+          {
+            quality: options.quality || "insane",
+            maxFrames: options.maxFrames || 192,
+            fusionMode: options.fusionMode || "ultimate",
+          },
+          onProgress,
+        );
+
+        // Monitor fusion processing
+        await this.monitorFusionProcessing(fusionJobId, onProgress);
+
+        const fusionJob = fusionProcessingService.getJob(fusionJobId);
+        if (fusionJob?.status === "completed") {
+          job.outputPath = fusionJob.finalPath;
+          job.previewPath = fusionJob.previewPath;
+          job.fusionJob = fusionJob;
+          console.log(
+            "🏆 REVOLUTIONARY FUSION completed - INSANE quality achieved!",
+          );
+        } else {
+          throw new Error("Fusion processing failed");
+        }
+      } else if (job.mode === "hollywood") {
         // 🎬 HOLLYWOOD MODE: Real Gaussian Splatting Pipeline
         console.log("🎬 Starting HOLLYWOOD-LEVEL Gaussian Splatting...");
 
@@ -151,7 +179,7 @@ export class VideoProcessingService {
         const gsJob = gaussianSplattingService.getJob(gsJobId);
         if (gsJob?.status === "completed") {
           job.outputPath = gsJob.outputPath;
-          console.log("🏆 Hollywood-level Gaussian Splatting completed!");
+          console.log("���� Hollywood-level Gaussian Splatting completed!");
         } else {
           throw new Error("Gaussian Splatting failed");
         }
