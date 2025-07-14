@@ -177,10 +177,10 @@ export default function Index() {
 
               <RadioGroup
                 value={processingMode}
-                onValueChange={(value: "hollywood" | "standard") =>
+                onValueChange={(value: "hollywood" | "standard" | "fusion") =>
                   setProcessingMode(value)
                 }
-                className="grid md:grid-cols-2 gap-4"
+                className="grid md:grid-cols-3 gap-4"
               >
                 {/* Hollywood Mode */}
                 <div className="relative">
