@@ -458,7 +458,12 @@ export default function Index() {
                         </>
                       ) : (
                         <>
-                          {processingMode === "hollywood" ? (
+                          {processingMode === "fusion" ? (
+                            <>
+                              <Sparkles className="mr-2 h-4 w-4" />
+                              🚀 FUSION Conversion
+                            </>
+                          ) : processingMode === "hollywood" ? (
                             <>
                               <Award className="mr-2 h-4 w-4" />
                               Hollywood Conversion
