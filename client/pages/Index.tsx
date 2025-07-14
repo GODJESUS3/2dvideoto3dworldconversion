@@ -425,9 +425,10 @@ export default function Index() {
       <section id="how-it-works" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">How It Works</h2>
+            <h2 className="text-4xl font-bold mb-4">How FUSION Works</h2>
             <p className="text-xl text-muted-foreground">
-              Three simple steps to transform your videos
+              Five revolutionary stages to transform your 2D videos into
+              cinema-quality 3D worlds
             </p>
           </div>
 
