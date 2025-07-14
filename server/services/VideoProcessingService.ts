@@ -99,7 +99,14 @@ export class VideoProcessingService {
     return jobId;
   }
 
-  private async processVideoAsync(jobId: string) {
+  private async processVideoAsync(
+    jobId: string,
+    options: {
+      mode?: "standard" | "hollywood";
+      quality?: "low" | "medium" | "high";
+      maxFrames?: number;
+    } = {},
+  ) {
     const job = this.jobs.get(jobId);
     if (!job) return;
 
@@ -116,45 +123,112 @@ export class VideoProcessingService {
       onProgress({ stage: "extracting", progress: 0 });
       job.metadata = await this.analyzeVideo(job.videoPath);
 
-      // Stage 2: Extract and process frames with AI depth estimation
-      onProgress({ stage: "estimating", progress: 0 });
-      console.log("🤖 Starting AI-powered depth estimation...");
+      // Choose processing pipeline based on mode
+      if (job.mode === "hollywood") {
+        // 🎬 HOLLYWOOD MODE: Real Gaussian Splatting Pipeline
+        console.log("🎬 Starting HOLLYWOOD-LEVEL Gaussian Splatting...");
 
-      job.depthFrames = await depthEstimationService.processVideoFrames(
-        job.videoPath,
-        onProgress,
-      );
+        const gsJobId = await gaussianSplattingService.startGaussianSplatting(
+          job.videoPath,
+          {
+            maxFrames: options.maxFrames || 192,
+            iterations: this.getIterationsForQuality(options.quality || "high"),
+            quality: options.quality || "high",
+          },
+          onProgress,
+        );
 
-      // Stage 3: Generate 3D point cloud
-      onProgress({ stage: "reconstructing", progress: 0 });
-      console.log("🔮 Generating 3D point cloud...");
+        job.gaussianSplattingJob = gaussianSplattingService.getJob(gsJobId);
 
-      job.pointCloudPath = await this.generatePointCloud(
-        job.depthFrames,
-        jobId,
-        onProgress,
-      );
+        // Monitor Gaussian Splatting progress
+        await this.monitorGaussianSplatting(gsJobId, onProgress);
 
-      // Stage 4: Create 3D mesh with Hollywood-level quality
-      onProgress({ stage: "rendering", progress: 0 });
-      console.log("🎭 Creating Hollywood-level 3D mesh...");
+        const gsJob = gaussianSplattingService.getJob(gsJobId);
+        if (gsJob?.status === "completed") {
+          job.outputPath = gsJob.outputPath;
+          console.log("🏆 Hollywood-level Gaussian Splatting completed!");
+        } else {
+          throw new Error("Gaussian Splatting failed");
+        }
+      } else {
+        // 🥈 STANDARD MODE: Our original depth estimation
+        console.log("🤖 Starting Standard AI depth estimation...");
 
-      job.meshPath = await this.generateAdvancedMesh(
-        job.depthFrames,
-        job.pointCloudPath,
-        jobId,
-        onProgress,
-      );
+        onProgress({ stage: "estimating", progress: 0 });
+        job.depthFrames = await depthEstimationService.processVideoFrames(
+          job.videoPath,
+          onProgress,
+        );
+
+        onProgress({ stage: "reconstructing", progress: 0 });
+        job.pointCloudPath = await this.generatePointCloud(
+          job.depthFrames,
+          jobId,
+          onProgress,
+        );
+
+        onProgress({ stage: "rendering", progress: 0 });
+        job.meshPath = await this.generateAdvancedMesh(
+          job.depthFrames,
+          job.pointCloudPath,
+          jobId,
+          onProgress,
+        );
+
+        job.outputPath = job.meshPath;
+      }
 
       job.status = "completed";
       job.estimatedCompletion = new Date();
 
-      console.log(`✨ Processing completed for job ${jobId}`);
+      console.log(
+        `✨ ${job.mode.toUpperCase()} processing completed for job ${jobId}`,
+      );
       onProgress({ stage: "rendering", progress: 100 });
     } catch (error) {
       job.status = "failed";
       job.error = error instanceof Error ? error.message : "Unknown error";
       console.error(`❌ Processing failed for job ${jobId}:`, error);
+    }
+  }
+
+  private async monitorGaussianSplatting(
+    gsJobId: string,
+    onProgress: (progress: ProcessingProgress) => void,
+  ): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const checkInterval = setInterval(() => {
+        const gsJob = gaussianSplattingService.getJob(gsJobId);
+        if (!gsJob) {
+          clearInterval(checkInterval);
+          reject(new Error("Gaussian Splatting job not found"));
+          return;
+        }
+
+        // Forward progress from Gaussian Splatting
+        onProgress(gsJob.progress);
+
+        if (gsJob.status === "completed") {
+          clearInterval(checkInterval);
+          resolve();
+        } else if (gsJob.status === "failed") {
+          clearInterval(checkInterval);
+          reject(new Error(gsJob.error || "Gaussian Splatting failed"));
+        }
+      }, 1000);
+    });
+  }
+
+  private getIterationsForQuality(quality: string): number {
+    switch (quality) {
+      case "low":
+        return 5000;
+      case "medium":
+        return 15000;
+      case "high":
+        return 25000; // Hollywood-level like the Python code
+      default:
+        return 15000;
     }
   }
 
