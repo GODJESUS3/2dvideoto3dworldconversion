@@ -210,7 +210,7 @@ export default function Index() {
                 {/* Enhancement Mode */}
                 <div>
                   <Label className="text-sm font-medium mb-3 block">
-                    Enhancement Mode
+                    🚀 Ultimate Enhancement (Fixed)
                   </Label>
                   <Select
                     value={fusionMode}
