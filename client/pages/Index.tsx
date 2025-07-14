@@ -432,37 +432,58 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-5 gap-6">
             <div className="text-center">
-              <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-violet-600 to-violet-700 flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4">
                 1
               </div>
-              <h3 className="text-xl font-semibold mb-3">Upload Video</h3>
-              <p className="text-muted-foreground">
-                Simply drag and drop your 2D video file into our secure upload
-                interface
+              <h3 className="text-lg font-semibold mb-2">
+                ⚡ AI Preprocessing
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Lightning-fast frame extraction and AI enhancement
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 rounded-full gradient-secondary flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-purple-700 flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4">
                 2
               </div>
-              <h3 className="text-xl font-semibold mb-3">AI Processing</h3>
-              <p className="text-muted-foreground">
-                Our AI analyzes depth, motion, and spatial relationships to
-                reconstruct 3D geometry
+              <h3 className="text-lg font-semibold mb-2">🧠 Depth Analysis</h3>
+              <p className="text-sm text-muted-foreground">
+                AI depth estimation provides intelligent guidance
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 rounded-full gradient-accent flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-pink-600 to-pink-700 flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4">
                 3
               </div>
-              <h3 className="text-xl font-semibold mb-3">Explore 3D</h3>
-              <p className="text-muted-foreground">
-                Navigate and interact with your video content in an immersive 3D
-                environment
+              <h3 className="text-lg font-semibold mb-2">🔮 Enhancement</h3>
+              <p className="text-sm text-muted-foreground">
+                AI-enhanced frame preparation for optimal quality
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-fuchsia-600 to-fuchsia-700 flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4">
+                4
+              </div>
+              <h3 className="text-lg font-semibold mb-2">
+                🎬 Gaussian Training
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                AI-guided Gaussian Splatting with up to 50K iterations
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4">
+                5
+              </div>
+              <h3 className="text-lg font-semibold mb-2">✨ Fusion Output</h3>
+              <p className="text-sm text-muted-foreground">
+                Revolutionary fusion creates cinema-quality 3D worlds
               </p>
             </div>
           </div>
