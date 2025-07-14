@@ -28,12 +28,14 @@ export interface ProcessingJob {
   status: "queued" | "processing" | "completed" | "failed";
   progress: ProcessingProgress;
   metadata?: VideoMetadata;
-  mode: "standard" | "hollywood"; // NEW: Processing quality mode
+  mode: "standard" | "hollywood" | "fusion"; // NEW: Added FUSION mode!
   depthFrames?: DepthFrame[];
-  gaussianSplattingJob?: GaussianSplattingJob; // NEW: Real GS processing
+  gaussianSplattingJob?: GaussianSplattingJob;
+  fusionJob?: FusionJob; // NEW: Revolutionary fusion processing
   pointCloudPath?: string;
   meshPath?: string;
-  outputPath?: string; // NEW: Final output path
+  outputPath?: string;
+  previewPath?: string; // NEW: Quick preview for fusion mode
   error?: string;
   startTime: Date;
   estimatedCompletion?: Date;
