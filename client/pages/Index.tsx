@@ -17,6 +17,10 @@ export default function Index() {
   const [dragActive, setDragActive] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [processingMode, setProcessingMode] = useState<
+    "hollywood" | "standard"
+  >("hollywood");
+  const [quality, setQuality] = useState<"low" | "medium" | "high">("high");
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
