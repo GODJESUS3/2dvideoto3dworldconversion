@@ -106,9 +106,10 @@ export class VideoProcessingService {
   private async processVideoAsync(
     jobId: string,
     options: {
-      mode?: "standard" | "hollywood";
-      quality?: "low" | "medium" | "high";
+      mode?: "standard" | "hollywood" | "fusion";
+      quality?: "low" | "medium" | "high" | "insane";
       maxFrames?: number;
+      fusionMode?: "fast" | "balanced" | "ultimate";
     } = {},
   ) {
     const job = this.jobs.get(jobId);
