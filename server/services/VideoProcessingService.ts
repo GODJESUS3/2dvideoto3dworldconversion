@@ -27,9 +27,12 @@ export interface ProcessingJob {
   status: "queued" | "processing" | "completed" | "failed";
   progress: ProcessingProgress;
   metadata?: VideoMetadata;
+  mode: "standard" | "hollywood"; // NEW: Processing quality mode
   depthFrames?: DepthFrame[];
+  gaussianSplattingJob?: GaussianSplattingJob; // NEW: Real GS processing
   pointCloudPath?: string;
   meshPath?: string;
+  outputPath?: string; // NEW: Final output path
   error?: string;
   startTime: Date;
   estimatedCompletion?: Date;
