@@ -32,6 +32,7 @@ export default function Viewer() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const jobId = searchParams.get("jobId");
+  const mode = searchParams.get("mode") || "hollywood";
 
   const [showControls, setShowControls] = useState(true);
   const [quality, setQuality] = useState([75]);
