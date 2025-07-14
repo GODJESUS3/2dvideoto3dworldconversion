@@ -29,14 +29,10 @@ export default function Index() {
   const [dragActive, setDragActive] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  // Always use FUSION mode - the revolutionary best of both worlds!
+  // Always use FUSION mode with MAXIMUM SETTINGS - Cinema Grade Only!
   const processingMode = "fusion";
-  const [quality, setQuality] = useState<"low" | "medium" | "high" | "insane">(
-    "insane",
-  );
-  const [fusionMode, setFusionMode] = useState<
-    "fast" | "balanced" | "ultimate"
-  >("ultimate");
+  const quality = "insane"; // Fixed: INSANE quality only (50,000 iterations)
+  const fusionMode = "ultimate"; // Fixed: Ultimate enhancement only
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -243,7 +239,7 @@ export default function Index() {
                     <SelectContent>
                       <SelectItem value="fast">⚡ Fast Enhancement</SelectItem>
                       <SelectItem value="balanced">
-                        ⚖️ Balanced Enhancement
+                        ⚖�� Balanced Enhancement
                       </SelectItem>
                       <SelectItem value="ultimate">
                         🚀 Ultimate Enhancement
