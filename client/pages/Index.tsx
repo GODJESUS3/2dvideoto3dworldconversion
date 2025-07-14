@@ -29,9 +29,8 @@ export default function Index() {
   const [dragActive, setDragActive] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [processingMode, setProcessingMode] = useState<
-    "hollywood" | "standard" | "fusion"
-  >("fusion");
+  // Always use FUSION mode - the revolutionary best of both worlds!
+  const processingMode = "fusion";
   const [quality, setQuality] = useState<"low" | "medium" | "high" | "insane">(
     "insane",
   );
