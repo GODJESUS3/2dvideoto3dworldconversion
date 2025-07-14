@@ -314,16 +314,58 @@ export default function Index() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="low">
-                        Low Quality (5,000 iterations - 2 min)
+                        {processingMode === "fusion"
+                          ? "Fast Fusion (8,000 iterations - 5 min)"
+                          : "Low Quality (5,000 iterations - 2 min)"}
                       </SelectItem>
                       <SelectItem value="medium">
-                        Medium Quality (15,000 iterations - 8 min)
+                        {processingMode === "fusion"
+                          ? "Balanced Fusion (20,000 iterations - 12 min)"
+                          : "Medium Quality (15,000 iterations - 8 min)"}
                       </SelectItem>
                       <SelectItem value="high">
-                        High Quality (25,000 iterations - 15 min)
+                        {processingMode === "fusion"
+                          ? "Ultimate Fusion (35,000 iterations - 20 min)"
+                          : "High Quality (25,000 iterations - 15 min)"}
                       </SelectItem>
+                      {processingMode === "fusion" && (
+                        <SelectItem value="insane">
+                          🔥 INSANE Fusion (50,000 iterations - 30 min) - Cinema
+                          Grade!
+                        </SelectItem>
+                      )}
                     </SelectContent>
                   </Select>
+
+                  {/* Fusion Mode Settings */}
+                  {processingMode === "fusion" && (
+                    <div className="mt-4">
+                      <Label className="text-sm font-medium mb-3 block">
+                        Fusion Enhancement
+                      </Label>
+                      <Select
+                        value={fusionMode}
+                        onValueChange={(
+                          value: "fast" | "balanced" | "ultimate",
+                        ) => setFusionMode(value)}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select fusion mode" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="fast">
+                            ⚡ Fast Fusion - Quick results
+                          </SelectItem>
+                          <SelectItem value="balanced">
+                            ⚖️ Balanced Fusion - Optimal quality/speed
+                          </SelectItem>
+                          <SelectItem value="ultimate">
+                            🚀 Ultimate Fusion - Maximum enhancement
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                 </div>
               )}
             </Card>
