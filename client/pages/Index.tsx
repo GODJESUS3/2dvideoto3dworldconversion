@@ -190,36 +190,19 @@ export default function Index() {
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
-                {/* Quality Settings */}
-                <div>
-                  <Label className="text-sm font-medium mb-3 block">
-                    Quality Level
-                  </Label>
-                  <Select
-                    value={quality}
-                    onValueChange={(
-                      value: "low" | "medium" | "high" | "insane",
-                    ) => setQuality(value)}
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select quality" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="low">
-                        ⚡ Fast Fusion (8,000 iterations - 5 min)
-                      </SelectItem>
-                      <SelectItem value="medium">
-                        ⚖️ Balanced Fusion (20,000 iterations - 12 min)
-                      </SelectItem>
-                      <SelectItem value="high">
-                        🚀 Ultimate Fusion (35,000 iterations - 20 min)
-                      </SelectItem>
-                      <SelectItem value="insane">
-                        🔥 INSANE Fusion (50,000 iterations - 30 min) - Cinema
-                        Grade!
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+                {/* Fixed INSANE Quality */}
+                <div className="text-center p-6 bg-gradient-to-br from-red-900/40 to-orange-900/40 rounded-lg border-2 border-red-400/50 glow">
+                  <div className="flex items-center justify-center space-x-2 mb-3">
+                    <span className="text-3xl">🔥</span>
+                    <h4 className="text-xl font-bold text-red-300">
+                      INSANE Quality
+                    </h4>
+                  </div>
+                  <div className="text-red-200 space-y-1">
+                    <p className="text-lg font-semibold">50,000 Iterations</p>
+                    <p className="text-sm">Cinema Grade</p>
+                    <p className="text-sm">30 minutes</p>
+                  </div>
                 </div>
 
                 {/* Enhancement Mode */}
