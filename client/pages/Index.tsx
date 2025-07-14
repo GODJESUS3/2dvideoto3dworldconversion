@@ -57,9 +57,12 @@ export default function Index() {
     setIsProcessing(true);
 
     try {
-      // Upload video for real AI processing
+      // Upload video with Hollywood/Standard mode settings
       const formData = new FormData();
       formData.append("video", uploadedFile);
+      formData.append("mode", processingMode);
+      formData.append("quality", quality);
+      formData.append("maxFrames", "192");
 
       const response = await fetch("/api/upload", {
         method: "POST",
@@ -71,13 +74,17 @@ export default function Index() {
       }
 
       const result = await response.json();
-      console.log("🎬 Starting Hollywood-level AI conversion...", result);
+      console.log(
+        `🎬 Starting ${processingMode.toUpperCase()}-level conversion...`,
+        result,
+      );
 
-      // Simulate processing time while AI works
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      // Simulate processing time while real AI works
+      const estimatedTime = processingMode === "hollywood" ? 6000 : 3000;
+      await new Promise((resolve) => setTimeout(resolve, estimatedTime));
 
       // Navigate to 3D viewer with job ID
-      navigate(`/viewer?jobId=${result.jobId}`);
+      navigate(`/viewer?jobId=${result.jobId}&mode=${processingMode}`);
     } catch (error) {
       console.error("❌ Processing failed:", error);
       alert("Processing failed. Please try again.");
