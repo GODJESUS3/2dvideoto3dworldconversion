@@ -74,12 +74,15 @@ export default function Index() {
     setIsProcessing(true);
 
     try {
-      // Upload video with Hollywood/Standard mode settings
+      // Upload video with processing mode settings
       const formData = new FormData();
       formData.append("video", uploadedFile);
       formData.append("mode", processingMode);
       formData.append("quality", quality);
       formData.append("maxFrames", "192");
+      if (processingMode === "fusion") {
+        formData.append("fusionMode", fusionMode);
+      }
 
       const response = await fetch("/api/upload", {
         method: "POST",
