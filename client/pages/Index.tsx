@@ -169,9 +169,10 @@ export default function Index() {
               Into 3D Worlds
             </h1>
             <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-              Experience the future of content creation. Upload any 2D video and
-              watch it come alive as an immersive 3D environment powered by
-              cutting-edge AI technology.
+              Revolutionary FUSION technology combining lightning-fast AI with
+              Hollywood-grade Gaussian Splatting. Upload any 2D video and watch
+              it transform into a cinema-quality 3D world with INSANE detail and
+              realism.
             </p>
           </div>
 
