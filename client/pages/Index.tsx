@@ -163,6 +163,127 @@ export default function Index() {
             </p>
           </div>
 
+          {/* Processing Mode Selection */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <Card className="p-6 glass border border-primary/20">
+              <h3 className="text-xl font-semibold mb-4 text-center">
+                Choose Your Processing Mode
+              </h3>
+
+              <RadioGroup
+                value={processingMode}
+                onValueChange={(value: "hollywood" | "standard") =>
+                  setProcessingMode(value)
+                }
+                className="grid md:grid-cols-2 gap-4"
+              >
+                {/* Hollywood Mode */}
+                <div className="relative">
+                  <RadioGroupItem
+                    value="hollywood"
+                    id="hollywood"
+                    className="peer sr-only"
+                  />
+                  <Label
+                    htmlFor="hollywood"
+                    className="flex flex-col p-6 bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-lg border-2 border-purple-500/30 cursor-pointer hover:border-purple-400/50 peer-checked:border-purple-400 peer-checked:bg-gradient-to-br peer-checked:from-purple-900/40 peer-checked:to-pink-900/40 transition-all duration-300"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-2">
+                        <Award className="h-6 w-6 text-purple-400" />
+                        <span className="text-lg font-semibold">
+                          Hollywood Mode
+                        </span>
+                      </div>
+                      <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                        Premium
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Real Gaussian Splatting with COLMAP calibration.
+                      Professional-grade 3D reconstruction used in Hollywood
+                      films.
+                    </p>
+                    <div className="text-xs text-purple-300 space-y-1">
+                      <div>• Real GPU-accelerated processing</div>
+                      <div>• 25,000 iteration training</div>
+                      <div>• Cinema-quality results</div>
+                      <div>• Processing time: 5-15 minutes</div>
+                    </div>
+                  </Label>
+                </div>
+
+                {/* Standard Mode */}
+                <div className="relative">
+                  <RadioGroupItem
+                    value="standard"
+                    id="standard"
+                    className="peer sr-only"
+                  />
+                  <Label
+                    htmlFor="standard"
+                    className="flex flex-col p-6 bg-gradient-to-br from-blue-900/20 to-cyan-900/20 rounded-lg border-2 border-blue-500/30 cursor-pointer hover:border-blue-400/50 peer-checked:border-blue-400 peer-checked:bg-gradient-to-br peer-checked:from-blue-900/40 peer-checked:to-cyan-900/40 transition-all duration-300"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-2">
+                        <Star className="h-6 w-6 text-blue-400" />
+                        <span className="text-lg font-semibold">
+                          Standard Mode
+                        </span>
+                      </div>
+                      <Badge
+                        variant="outline"
+                        className="border-blue-400 text-blue-400"
+                      >
+                        Fast
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      AI-powered depth estimation with advanced algorithms.
+                      High-quality 3D reconstruction for quick results.
+                    </p>
+                    <div className="text-xs text-blue-300 space-y-1">
+                      <div>• Advanced depth estimation</div>
+                      <div>• Smart point cloud generation</div>
+                      <div>• High-quality results</div>
+                      <div>• Processing time: 1-3 minutes</div>
+                    </div>
+                  </Label>
+                </div>
+              </RadioGroup>
+
+              {/* Quality Selection */}
+              {processingMode === "hollywood" && (
+                <div className="mt-6 pt-6 border-t border-border">
+                  <Label className="text-sm font-medium mb-3 block">
+                    Quality Settings
+                  </Label>
+                  <Select
+                    value={quality}
+                    onValueChange={(value: "low" | "medium" | "high") =>
+                      setQuality(value)
+                    }
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select quality" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="low">
+                        Low Quality (5,000 iterations - 2 min)
+                      </SelectItem>
+                      <SelectItem value="medium">
+                        Medium Quality (15,000 iterations - 8 min)
+                      </SelectItem>
+                      <SelectItem value="high">
+                        High Quality (25,000 iterations - 15 min)
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+            </Card>
+          </div>
+
           {/* Upload Section */}
           <div className="max-w-2xl mx-auto">
             <Card className="p-8 glass glow">
