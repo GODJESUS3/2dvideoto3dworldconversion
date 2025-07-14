@@ -73,9 +73,10 @@ export class VideoProcessingService {
   async startProcessing(
     videoPath: string,
     options: {
-      mode?: "standard" | "hollywood";
-      quality?: "low" | "medium" | "high";
+      mode?: "standard" | "hollywood" | "fusion";
+      quality?: "low" | "medium" | "high" | "insane";
       maxFrames?: number;
+      fusionMode?: "fast" | "balanced" | "ultimate";
     } = {},
     onProgress?: (progress: ProcessingProgress) => void,
   ): Promise<string> {
@@ -86,7 +87,7 @@ export class VideoProcessingService {
       videoPath,
       status: "queued",
       progress: { stage: "extracting", progress: 0 },
-      mode: options.mode || "hollywood", // Default to Hollywood mode!
+      mode: options.mode || "fusion", // Default to FUSION mode! 🚀
       startTime: new Date(),
     };
 
