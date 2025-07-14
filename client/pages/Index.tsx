@@ -30,9 +30,14 @@ export default function Index() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingMode, setProcessingMode] = useState<
-    "hollywood" | "standard"
-  >("hollywood");
-  const [quality, setQuality] = useState<"low" | "medium" | "high">("high");
+    "hollywood" | "standard" | "fusion"
+  >("fusion");
+  const [quality, setQuality] = useState<"low" | "medium" | "high" | "insane">(
+    "insane",
+  );
+  const [fusionMode, setFusionMode] = useState<
+    "fast" | "balanced" | "ultimate"
+  >("ultimate");
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
