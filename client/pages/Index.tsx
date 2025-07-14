@@ -439,7 +439,13 @@ export default function Index() {
                     <Button
                       onClick={processVideo}
                       disabled={isProcessing}
-                      className={`glow ${processingMode === "hollywood" ? "gradient-primary" : "bg-blue-600 hover:bg-blue-700"}`}
+                      className={`glow ${
+                        processingMode === "fusion"
+                          ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700"
+                          : processingMode === "hollywood"
+                            ? "gradient-primary"
+                            : "bg-blue-600 hover:bg-blue-700"
+                      }`}
                     >
                       {isProcessing ? (
                         <>
